@@ -2,6 +2,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B3KZCWHPHL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-B3KZCWHPHL');
+  </script>
   <meta property="og:title" content="Deals on Tap">
   <meta property="og:description" content="Your daily stream of Amazon finds. Fast. Easy. On tap.">
   <meta property="og:image" content="https://raw.githubusercontent.com/NodeBot2025/deals_on_tap_pwa/main/images/meta-banner.png">
@@ -42,7 +50,13 @@
       e.preventDefault();
       deferredPrompt = e;
       document.getElementById('install-btn').style.display = 'inline-block';
-  document.getElementById('install-btn').addEventListener('click', installApp);
+  document.getElementById('install-btn').addEventListener('click', () => {
+        gtag('event', 'add_to_home_screen', {
+          event_category: 'engagement',
+          event_label: 'PWA Installed'
+        });
+        installApp();
+      });
       document.getElementById('header-text').innerText = '📦 Add Amazon Deals to Your Home Screen';
     });
 
@@ -62,7 +76,8 @@
     if (header) header.innerText = '👋 Please continue in your browser to unlock savings';
     openDefaultBtn?.addEventListener('click', function () {
   // Try opening the link directly (fallback if no FB prompt triggered)
-  window.location.href = 'https://nodebot2025.github.io/deals_on_tap_pwa/';
+  gtag('event', 'click_open_browser', {event_category: 'navigation', event_label: 'Open Default Browser'});
+      window.location.href = 'https://nodebot2025.github.io/deals_on_tap_pwa/';
 });
   } else {
     if (!isStandalone && deferredPrompt) {
@@ -99,13 +114,12 @@
   </script>
 </head>
 <body>
-  </br>
   <h1 id="header-text">📦 Add Amazon Deals to Your Home Screen</h1>
   <button id="install-btn" style="display: none; padding: 10px 20px; background-color: #232F3E; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">Add to Home Screen</button>
   <div id="fb-tip" style="display: none; position: fixed; top: 0; left: 0; width: 100%; background-color: #fff3cd; color: #b10000; padding: 12px; font-size: 14px; border-bottom: 1px solid #ffeeba; z-index: 1000;">
   ⚠️ If the button doesn't work, tap the <strong>three dots</strong> in the top right corner and choose <strong>"Open in Browser"</strong> to continue.
 </div>
-  <button class="amazon-btn" id="amazon-deals-button" onclick="window.open('https://www.amazon.com/b?node=205662655011&ref_=hul_hp_m_ic_ect_hulclr&ishaul=1&tag=appicon-20', '_blank')">Open Amazon Deals</button>
+  <button class="amazon-btn" id="amazon-deals-button" onclick="gtag('event', 'click_amazon_deals', {event_category: 'navigation', event_label: 'Amazon Deals Button'}); window.open('https://www.amazon.com/b?node=205662655011&ref_=hul_hp_m_ic_ect_hulclr&ishaul=1&tag=appicon-20', '_blank')">Open Amazon Deals</button>
   <button id="open-default-browser" style="display: none; padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">
       Open in Default Browser
     </button>
