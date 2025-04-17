@@ -13,7 +13,7 @@
       text-align: center;
       margin-top: 50px;
     }
-    #install-btn {
+    #install-btn, .amazon-btn {
       padding: 10px 20px;
       background-color: #232F3E;
       color: white;
@@ -22,13 +22,9 @@
       font-size: 16px;
       cursor: pointer;
       margin-top: 20px;
-      display: none;
     }
-    a {
-      display: block;
-      margin-top: 20px;
-      font-size: 18px;
-      color: #1A0DAB;
+    .amazon-btn {
+      background-color: #FF9900;
     }
   </style>
   <script>
@@ -37,6 +33,13 @@
       e.preventDefault();
       deferredPrompt = e;
       document.getElementById('install-btn').style.display = 'inline-block';
+      document.getElementById('header-text').innerText = '📦 Add Amazon Deals to Your Home Screen';
+    });
+
+    window.addEventListener('load', () => {
+      if (!deferredPrompt) {
+        document.getElementById('header-text').innerText = '👋 Welcome back — let’s dive into those savings!';
+      }
     });
 
     function installApp() {
@@ -53,10 +56,8 @@
   </script>
 </head>
 <body>
-  <h1>📦 Add Amazon Deals to Your Home Screen</h1>
-<button onclick="window.open('https://www.amazon.com/?tag=appicon-20', '_blank')" style="padding: 10px 20px; background-color: #FF9900; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-top: 20px;">
-  Open Amazon Deals
-</button>
+  <h1 id="header-text">📦 Add Amazon Deals to Your Home Screen</h1>
+  <button class="amazon-btn" onclick="window.open('https://www.amazon.com/?tag=appicon-20', '_blank')">Open Amazon Deals</button>
   <button id="install-btn" onclick="installApp()">Add to Home Screen</button>
 
   <script>
@@ -66,7 +67,8 @@
         .catch(err => console.log('Service worker failed', err));
     }
   </script>
-   <p style="font-size: 12px; color: gray; margin-top: 40px;">
+
+  <p style="font-size: 12px; color: gray; margin-top: 40px;">
     As an Amazon Associate, I earn from qualifying purchases.
   </p>
 </body>
