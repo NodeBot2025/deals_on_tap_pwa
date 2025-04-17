@@ -37,10 +37,11 @@
     });
 
     window.addEventListener('load', () => {
-      if (!deferredPrompt) {
-        document.getElementById('header-text').innerText = '👋 Welcome back — let’s dive into those savings!';
-      }
-    });
+  if (!deferredPrompt) {
+    document.getElementById('header-text').innerText = '👋 Welcome back — let’s dive into those savings!';
+    document.getElementById('install-btn').style.display = 'none';
+  }
+});
 
     function installApp() {
       if (deferredPrompt) {
@@ -67,6 +68,19 @@
         .catch(err => console.log('Service worker failed', err));
     }
   </script>
+
+  <p style="font-size: 12px; color: gray; margin-top: 40px;">
+    As an Amazon Associate, I earn from qualifying purchases.
+  </p>
+  <section style="max-width: 800px; margin: 60px auto; padding: 20px; background-color: #f8f8f8; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+    <h2 style="color: #232F3E;">About Us</h2>
+    <p style="font-size: 16px; color: #333; line-height: 1.6;">
+      We’re passionate deal hunters who created this app to help you uncover the best Amazon bargains in just one tap. No fluff, no spam — just a lightning-fast shortcut to the hottest savings. Whether you're shopping for gifts, gadgets, or essentials, we make sure you're always one click away from a good deal.
+    </p>
+    <p style="font-size: 15px; color: #555; margin-top: 15px;">
+      Thanks for supporting us! Every purchase made through this app helps keep us going — and it doesn’t cost you a penny more.
+    </p>
+  </section>
 
   <p style="font-size: 12px; color: gray; margin-top: 40px;">
     As an Amazon Associate, I earn from qualifying purchases.
