@@ -42,6 +42,7 @@
       e.preventDefault();
       deferredPrompt = e;
       document.getElementById('install-btn').style.display = 'inline-block';
+  document.getElementById('install-btn').addEventListener('click', installApp);
       document.getElementById('header-text').innerText = '📦 Add Amazon Deals to Your Home Screen';
     });
 
