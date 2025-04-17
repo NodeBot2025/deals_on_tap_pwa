@@ -112,6 +112,11 @@
     });
 
     window.addEventListener('load', () => {
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent) && !window.MSStream && !window.matchMedia('(display-mode: standalone)').matches;
+  if (isIOS) {
+    const iosTip = document.getElementById('ios-tip');
+    if (iosTip) iosTip.style.display = 'block';
+  }
   const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
   const openDefaultBtn = document.getElementById('open-default-browser');
   const amazonBtn = document.getElementById('amazon-deals-button');
@@ -165,22 +170,28 @@
   </script>
 </head>
 <body></br>
- 
+  <header>
+    <h1 id="header-text">📦 Add Amazon Deals to Your Home Screen</h1>
+  </header>
+
+  <div id="ios-tip" style="display: none; position: fixed; top: 0; left: 0; width: 100%; background-color: #e0f7fa; color: #006064; padding: 12px; font-size: 14px; border-bottom: 1px solid #b2ebf2; z-index: 1000;">
+    📱 To save this app, tap the <strong>Share</strong> icon <span style="font-size: 18px;">🔗</span> in Safari and choose <strong>"Add to Home Screen"</strong>.
+  </div>
 
   <div id="fb-tip" style="display: none; position: fixed; top: 0; left: 0; width: 100%; background-color: #fff3cd; color: #b10000; padding: 12px; font-size: 14px; border-bottom: 1px solid #ffeeba; z-index: 1000;">
     ⚠️ If the button doesn't work, tap the <strong>three dots</strong> in the top right corner and choose <strong>"Open in Browser"</strong> to continue.<br><br>
+    👉 Or long-press this link and select <strong>"Open in Browser"</strong>:<br>
+
   </div>
-</br>
-  </br>
-   <header>
-    <h1 id="header-text">📦 Add Amazon Deals to Your Home Screen</h1>
-  </header>
+  
   <button id="install-btn" style="display: none; padding: 10px 20px; background-color: #232F3E; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">Add to Home Screen</button>
+
 </div>
   <button class="amazon-btn" id="amazon-deals-button" onclick="gtag('event', 'click_amazon_deals', {event_category: 'navigation', event_label: 'Amazon Deals Button'}); window.open('https://www.amazon.com/b?node=205662655011&ref_=hul_hp_m_ic_ect_hulclr&ishaul=1&tag=appicon-20', '_blank')">Open Amazon Deals</button>
   <button id="open-default-browser" style="display: none; padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">
       Open in Default Browser
     </button>
+    
   <section style="max-width: 800px; margin: 60px auto; padding: 20px; background-color: #f8f8f8; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
     <h2 style="color: #232F3E;">About Us</h2>
     <p style="font-size: 16px; color: #333; line-height: 1.6;">
