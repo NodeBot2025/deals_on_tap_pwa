@@ -44,12 +44,30 @@
 
     window.addEventListener('load', () => {
   const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-  if (!deferredPrompt && !isStandalone) {
-    document.getElementById('header-text').innerText = '📦 Add Amazon Deals to Your Home Screen';
-    document.getElementById('install-btn').style.display = 'inline-block';
+  const openDefaultBtn = document.getElementById('open-default-browser');
+  const amazonBtn = document.getElementById('amazon-deals-button');
+  const installBtn = document.getElementById('install-btn');
+  const header = document.getElementById('header-text');
+
+  if (isFacebookBrowser()) {
+    if (openDefaultBtn) openDefaultBtn.style.display = 'inline-block';
+    if (amazonBtn) amazonBtn.style.display = 'none';
+    if (installBtn) installBtn.style.display = 'none';
+    if (header) header.innerText = '👋 Please continue in your browser to unlock savings';
+    openDefaultBtn?.addEventListener('click', function () {
+      window.location.href = 'https://nodebot2025.github.io/deals_on_tap_pwa/';
+    });
   } else {
-    document.getElementById('header-text').innerText = '👋 Welcome back — Open Amazon Deals to start saving!';
-    document.getElementById('install-btn').style.display = 'none';
+    if (!isStandalone && deferredPrompt) {
+      if (header) header.innerText = '📦 Add Amazon Deals to Your Home Screen';
+      if (installBtn) installBtn.style.display = 'inline-block';
+      if (amazonBtn) amazonBtn.style.display = 'inline-block';
+    } else {
+      if (header) header.innerText = '👋 Welcome back — Open Amazon Deals to start saving!';
+      if (installBtn) installBtn.style.display = 'none';
+      if (amazonBtn) amazonBtn.style.display = 'inline-block';
+    }
+    if (openDefaultBtn) openDefaultBtn.style.display = 'none';
   }
 });
 
@@ -90,7 +108,7 @@
       if (amazonBtn) amazonBtn.style.display = 'none';
 
       openDefaultBtn?.addEventListener('click', function () {
-        window.open('https://nodebot2025.github.io/deals_on_tap_pwa/', '_blank');
+        window.location.href = 'https://nodebot2025.github.io/deals_on_tap_pwa/';
       });
     } else {
       if (amazonBtn) amazonBtn.style.display = 'inline-block';
