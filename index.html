@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon Deals</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#232F3E">
+  <link rel="icon" href="/icon.png" type="image/png">
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #install-btn {
+      padding: 10px 20px;
+      background-color: #232F3E;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+      display: none;
+    }
+    a {
+      display: block;
+      margin-top: 20px;
+      font-size: 18px;
+      color: #1A0DAB;
+    }
+  </style>
+  <script>
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      document.getElementById('install-btn').style.display = 'inline-block';
+    });
+
+    function installApp() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(choice => {
+          if (choice.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt');
+          }
+          deferredPrompt = null;
+        });
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>📦 Add Amazon Deals to Your Home Screen</h1>
+  <a href="https://www.amazon.com/?tag=appicon-20" target="_blank">Tap here to open Amazon</a>
+  <button id="install-btn" onclick="installApp()">Add to Home Screen</button>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(reg => console.log('Service worker registered'))
+        .catch(err => console.log('Service worker failed', err));
+    }
+  </script>
+</body>
+</html>
