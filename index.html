@@ -55,7 +55,7 @@
     if (installBtn) installBtn.style.display = 'none';
     if (header) header.innerText = '👋 Please continue in your browser to unlock savings';
     openDefaultBtn?.addEventListener('click', function () {
-      window.open('https://nodebot2025.github.io/deals_on_tap_pwa/', '_blank');
+      window.location.href = 'https://nodebot2025.github.io/deals_on_tap_pwa/';
     });
   } else {
     if (!isStandalone && deferredPrompt) {
