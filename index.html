@@ -65,17 +65,15 @@
       return navigator.userAgent.includes("FBAN") || navigator.userAgent.includes("FBAV");
     }
 
-    window.addEventListener('load', () => {
-      if (isFacebookBrowser() && /Android/i.test(navigator.userAgent)) {
-        const intentUrl = "intent://nodebot2025.github.io/deals_on_tap_pwa#Intent;scheme=https;package=com.android.chrome;end";
-        window.location.href = intentUrl;
-      }
-    });
+    
   </script>
 </head>
 <body>
   <h1 id="header-text">📦 Add Amazon Deals to Your Home Screen</h1>
-  <button class="amazon-btn" onclick="window.open('https://www.amazon.com/b?node=205662655011&ref_=hul_hp_m_ic_ect_hulclr&ishaul=1&tag=appicon-20', '_blank')">Open Amazon Deals</button>
+  $1
+  <button id="open-default-browser" style="display: none; padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-top: 20px;">
+    Open in Default Browser
+  </button>
   <button id="install-btn" onclick="installApp()">Add to Home Screen</button>
 
   <script>
