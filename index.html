@@ -71,29 +71,28 @@
 </head>
 <body>
   <h1 id="header-text">📦 Add Amazon Deals to Your Home Screen</h1>
-  <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 20px;">
-    <button class="amazon-btn" id="amazon-deals-button" onclick="window.open('https://www.amazon.com/b?node=205662655011&ref_=hul_hp_m_ic_ect_hulclr&ishaul=1&tag=appicon-20', '_blank')">Open Amazon Deals</button>
+  $1
+    <button id="open-default-browser" style="display: none; padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">
+      Open in Default Browser
+    </button>
     <script>
   window.addEventListener('load', () => {
     const openDefaultBtn = document.getElementById('open-default-browser');
     const amazonBtn = document.getElementById('amazon-deals-button');
+
     if (isFacebookBrowser()) {
       if (openDefaultBtn) openDefaultBtn.style.display = 'inline-block';
       if (amazonBtn) amazonBtn.style.display = 'none';
-      if (openDefaultBtn) {
-        openDefaultBtn.addEventListener('click', function () {
-          window.location.href = 'https://www.amazon.com/b?node=205662655011&ref_=hul_hp_m_ic_ect_hulclr&ishaul=1&tag=appicon-20';
-        });
-      }
+
+      openDefaultBtn?.addEventListener('click', function () {
+        window.location.href = 'https://www.amazon.com/b?node=205662655011&ref_=hul_hp_m_ic_ect_hulclr&ishaul=1&tag=appicon-20';
+      });
     } else {
       if (amazonBtn) amazonBtn.style.display = 'inline-block';
       if (openDefaultBtn) openDefaultBtn.style.display = 'none';
     }
   });
 </script>
-  <p style="font-size: 12px; color: gray; margin-top: 40px;">
-    As an Amazon Associate, I earn from qualifying purchases.
-  </p>
   <section style="max-width: 800px; margin: 60px auto; padding: 20px; background-color: #f8f8f8; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
     <h2 style="color: #232F3E;">About Us</h2>
     <p style="font-size: 16px; color: #333; line-height: 1.6;">
