@@ -43,11 +43,15 @@
     });
 
     window.addEventListener('load', () => {
-      if (!deferredPrompt) {
-        document.getElementById('header-text').innerText = '👋 Welcome back — Open Amazon Deals to start saving!';
-        document.getElementById('install-btn').style.display = 'none';
-      }
-    });
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+  if (!deferredPrompt && !isStandalone) {
+    document.getElementById('header-text').innerText = '📦 Add Amazon Deals to Your Home Screen';
+    document.getElementById('install-btn').style.display = 'inline-block';
+  } else {
+    document.getElementById('header-text').innerText = '👋 Welcome back — Open Amazon Deals to start saving!';
+    document.getElementById('install-btn').style.display = 'none';
+  }
+});
 
     function installApp() {
       if (deferredPrompt) {
