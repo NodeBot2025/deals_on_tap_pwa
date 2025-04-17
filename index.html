@@ -61,7 +61,11 @@
     if (installBtn) installBtn.style.display = 'none';
     if (header) header.innerText = '👋 Please continue in your browser to unlock savings';
     openDefaultBtn?.addEventListener('click', function () {
-      window.location.href = 'https://nodebot2025.github.io/deals_on_tap_pwa/';
+      const fbMessage = document.createElement('div');
+      fbMessage.style = 'position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #232F3E; color: #fff; padding: 12px 20px; border-radius: 8px; font-size: 14px; z-index: 1001;';
+      fbMessage.innerText = 'Tap the 3-dot menu in the corner and choose "Open in Browser"';
+      document.body.appendChild(fbMessage);
+      setTimeout(() => fbMessage.remove(), 5000);
     });
   } else {
     if (!isStandalone && deferredPrompt) {
@@ -97,7 +101,7 @@
     
   </script>
 </head>
-<body></br>
+<body>
   <h1 id="header-text">📦 Add Amazon Deals to Your Home Screen</h1>
   <button id="install-btn" style="display: none; padding: 10px 20px; background-color: #232F3E; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">Add to Home Screen</button>
   <div id="fb-tip" style="display: none; position: fixed; top: 0; left: 0; width: 100%; background-color: #fff3cd; color: #b10000; padding: 12px; font-size: 14px; border-bottom: 1px solid #ffeeba; z-index: 1000;">
