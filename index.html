@@ -37,11 +37,11 @@
     });
 
     window.addEventListener('load', () => {
-  if (!deferredPrompt) {
-    document.getElementById('header-text').innerText = '👋 Welcome back — Open Amazon Deals to start saving!';
-    document.getElementById('install-btn').style.display = 'none';
-  }
-});
+      if (!deferredPrompt) {
+        document.getElementById('header-text').innerText = '👋 Welcome back — Open Amazon Deals to start saving!';
+        document.getElementById('install-btn').style.display = 'none';
+      }
+    });
 
     function installApp() {
       if (deferredPrompt) {
@@ -54,36 +54,9 @@
         });
       }
     }
-    </script>
-  <script>
-    const bannerImages = [
-  {
-    img: "https://images-na.ssl-images-amazon.com/images/G/01/associates/remote-buy-box/remote_buybox_banner_1._CB468911209_.jpg",
-    url: "https://www.amazon.com/dp/B09WR1X43G?tag=appicon-20"
-  },
-  {
-    img: "https://images-na.ssl-images-amazon.com/images/G/01/associates/remote-buy-box/remote_buybox_banner_2._CB468911209_.jpg",
-    url: "https://www.amazon.com/dp/B07FZ8S74R?tag=appicon-20"
-  },
-  {
-    img: "https://images-na.ssl-images-amazon.com/images/G/01/associates/remote-buy-box/remote_buybox_banner_3._CB468911209_.jpg",
-    url: "https://www.amazon.com/dp/B08N5WRWNW?tag=appicon-20"
-  }
-];
-    let bannerIndex = 0;
-    setInterval(() => {
-      bannerIndex = (bannerIndex + 1) % bannerImages.length;
-      document.getElementById('banner').src = bannerImages[bannerIndex].img;
-document.getElementById('banner-link').href = bannerImages[bannerIndex].url;
-    }, 4000);
   </script>
 </head>
 <body>
-  <div id="banner-container" style="max-width: 100%; overflow: hidden; margin: 20px auto;">
-    <a id="banner-link" href="https://www.amazon.com/dp/B09WR1X43G?tag=appicon-20" target="_blank">
-      <img id="banner" src="https://images-na.ssl-images-amazon.com/images/G/01/associates/remote-buy-box/remote_buybox_banner_1._CB468911209_.jpg" style="width: 100%; max-width: 728px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-      </a>
-  </div>
   <h1 id="header-text">📦 Add Amazon Deals to Your Home Screen</h1>
   <button class="amazon-btn" onclick="window.open('https://www.amazon.com/b?node=205662655011&ref_=hul_hp_m_ic_ect_hulclr&ishaul=1&tag=appicon-20', '_blank')">Open Amazon Deals</button>
   <button id="install-btn" onclick="installApp()">Add to Home Screen</button>
